@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 PKG_REV:=841c6b57e7a7c6c2ea7c8086bb5d1be354df6eda
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=https://github.com/5g-empower/empower-lvap-agent.git
+PKG_SOURCE_URL:=https://github.com/hccresende/empower-lvap-agent.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git
@@ -74,6 +74,7 @@ define Package/empower-lvap-agent/install
 	$(INSTALL_DIR) $(1)/etc/init.d/
 	$(INSTALL_DIR) $(1)/etc/config/
 	$(CP) ./files/empower.config $(1)/etc/config/empower
+	$(CP) ./files/ovs-monitor-ipsec $(1)/usr/bin/ovs-monitor-ipsec
 	$(INSTALL_BIN) ./files/empower.init $(1)/etc/init.d/empower
 	$(INSTALL_BIN) ./files/empower_config.sh $(1)/usr/bin/empower_config.sh
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/conf/wifi/write_handler $(1)/usr/bin/

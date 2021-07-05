@@ -101,6 +101,8 @@ append_ifname() {
 
     # this is needed because sometimes the monitor interface is not immediatelly
     # ready to accept configuration commands
+    ip link set $IFNAME down                                        
+    iw dev $IFNAME set monitor control
     sleep 2
 
     # set monitor interface MTU
@@ -180,7 +182,7 @@ start() {
     ovs-vsctl add-port $BRIDGE $INTERFACE
 
     # set the controller
-    ovs-vsctl set-controller $BRIDGE tcp:$MASTER_IP:6633
+    # ovs-vsctl set-controller $BRIDGE tcp:$MASTER_IP:6633
 
 }
 
